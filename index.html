@@ -11,7 +11,7 @@
 <body>
     <nav 
         class="navbar navbar-expand-lg"
-        :class="navbarClasses"
+        :class="[`navbar-${theme}`, `bg-${theme}`, 'navbar', 'navbar-expand-lg']"
     >
         <div class=container-fluid>
             <a class="navbar-brand" href="#">My Vue</a>
@@ -30,7 +30,7 @@
             <form class="d-flex">
                 <button
                     class="btn btn-dark"
-                    @click.prevent="useDarkNavbar = !useDarkNavbar"
+                    @click.prevent="changeTheme()"
                 >Toggle DarkMode</button>
             </form>
         </div>
@@ -41,20 +41,10 @@
     </div>
     <script>
         Vue.createApp({
-            computed: {
-                navbarClasses(){
-                    return {
-                        'navbar-light': !this.useDarkNavbar,
-                        'bg-light': !this.useDarkNavbar,
-                        'navbar-dark': this.useDarkNavbar,
-                        'bg-dark': this.useDarkNavbar
-                    }
-                }
-            },
             data() {
                 return {
                     activePage: 0,
-                    useDarkNavbar: true,
+                    theme: 'dark',
                     pages: [
                         {
                             link: {text: 'Home', url: 'index.html'},
@@ -72,6 +62,17 @@
                             content: 'This is the contact content'
                         }
                     ]
+                }
+            },
+            methods: {
+                changeTheme(){
+                    let theme = 'light';
+
+                    if(this.theme == 'light') {
+                        theme = 'dark';
+                    }
+
+                    this.theme = theme;
                 }
             }
         }).mount('body');
