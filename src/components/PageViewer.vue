@@ -8,7 +8,18 @@
 <script>
 
 export default {
-    props: ['page']
+    props: {
+        page : {
+            type: Object,
+            default(rawProps) {
+                //Ha undefined akkor ez az alapértelmezett érték
+                return {
+                    pageTitle: '',
+                    content: ''
+                };
+            }
+         }
+    }
 }
 </script>
 <style scoped>
