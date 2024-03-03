@@ -1,7 +1,7 @@
 const pagesKey = 'pages';
 
-let pageJson = localStorage.getItem(pagesKey);
-let pagesStore = JSON.parse(pageJson);
+let pagesJson = localStorage.getItem(pagesKey);
+let pagesStore = JSON.parse(pagesJson);
 
 export default {
     getAllPages() {
@@ -10,5 +10,11 @@ export default {
 
     getSinglePage(index) {
         return pagesStore[index];
+    },
+
+    editPage(index, page) {
+        pagesStore[index] = page;
+
+        localStorage.setItem(pagesKey, JSON.stringify(pagesStore));
     }
 }
