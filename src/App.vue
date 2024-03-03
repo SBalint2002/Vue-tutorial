@@ -30,6 +30,7 @@ export default {
         return {
             activePage: 0,
             pages: []
+            //pages: this.getPages()
         }
     },
     methods: {
